@@ -1,0 +1,23 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Espace Client{% endblock %}
+
+{% block content %}
+<h1>Espace Client</h1>
+
+<p><strong>Nom :</strong> {{ client.nom }}</p>
+
+<h2>Vos réservations</h2>
+{% if reservations %}
+    <ul class="list-group">
+        {% for res in reservations %}
+            <li class="list-group-item">
+                Maison : {{ res.maison.nom }} | Du {{ res.date_debut }} au {{ res.date_fin }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez pas encore de réservation.</p>
+{% endif %}
+
+{% endblock %}

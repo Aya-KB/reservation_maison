@@ -1,0 +1,52 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Accueil - Réservation Maisons{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Bienvenue sur notre plateforme de réservation</h1>
+<p class="text-center">Trouvez la maison de vos rêves et réservez-la facilement !</p>
+
+<!-- Liste des maisons -->
+<h2 class="mt-5">Maisons disponibles</h2>
+<div class="row">
+    {% for maison in maisons %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+        
+                <div class="card-body">
+                    <h5 class="card-title">{{ maison.adresse }}</h5>
+                    <p class="card-text">Prix : {{ maison.prix }} DH</p>
+                    <a href="{% url 'reserver_maison' maison.id %}" class="btn btn-primary">Réserver</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>Aucune maison disponible actuellement.</p>
+    {% endfor %}
+</div>
+
+<!-- Espace client -->
+{% if user.is_authenticated and client %}
+    <h2 class="mt-5">Votre espace client</h2>
+    {% if reservations %}
+        <ul class="list-group">
+            {% for res in reservations %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Maison : {{ res.maison.adresse }} | Du {{ res.date_debut }} au {{ res.date_fin }}
+                    <form method="post" action="{% url 'annuler_reservation' res.id %}" onsubmit="return confirm('Voulez-vous vraiment annuler cette réservation ?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'espace_client' %}" class="btn btn-secondary mt-3">Voir toutes vos réservations</a>
+    {% else %}
+        <p>Vous n'avez pas encore de réservation.</p>
+    {% endif %}
+{% elif user.is_authenticated %}
+    <p>Votre profil client est introuvable, merci de contacter l'administrateur.</p>
+{% else %}
+    <p><a href="{% url 'connexion_client' %}">Connectez-vous</a> pour accéder à votre espace client.</p>
+{% endif %}
+{% endblock %}

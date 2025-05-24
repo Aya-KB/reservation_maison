@@ -1,0 +1,29 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Maisons disponibles{% endblock %}
+
+{% block content %}
+<h2>Maisons disponibles</h2>
+
+<div class="row">
+    {% for maison in maisons %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            {% if maison.image %}
+                <img src="{{ maison.image.url }}" class="card-img-top" alt="{{ maison.adresse }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ maison.adresse }}</h5>
+                <p class="card-text">{{ maison.description }}</p>
+                <p class="card-text"><strong>Prix :</strong> {{ maison.prix }} DH</p>
+                <a href="{% url 'reserver_maison' maison.id %}" class="btn btn-primary">Réserver</a>
+            </div>
+        </div>
+    </div>
+
+
+    {% empty %}
+        <p>Aucune maison disponible pour le moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}

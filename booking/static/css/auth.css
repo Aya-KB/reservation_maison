@@ -1,0 +1,82 @@
+/* Container global centré */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre */
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 700;
+}
+
+/* Champs du formulaire */
+.auth-container form input[type="text"],
+.auth-container form input[type="email"],
+.auth-container form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus sur champs */
+.auth-container form input[type="text"]:focus,
+.auth-container form input[type="email"]:focus,
+.auth-container form input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Bouton */
+.auth-container form button {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-container form button:hover {
+    background-color: #0056b3;
+}
+
+/* Message d’erreur */
+.auth-container .errorlist {
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* Lien (ex: "Vous n'avez pas de compte ?") */
+.auth-container .auth-link {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-container .auth-link:hover {
+    text-decoration: underline;
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
